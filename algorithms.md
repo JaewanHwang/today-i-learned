@@ -32,8 +32,15 @@ q.append(4)
 q.appendleft(5)
 # deque([5, 2, 3])
 ```
-### 정렬
+## 정렬
 - Python, C++은 기본 정렬 메소드가 모두 stable sort를 지원한다.
 - merge sort, bubble sort, insertion sort가 모두 stable sort이다.
 - stable sort를 만들기 위해서 *decorate-sort-undecorate*패턴을 사용하기도 한다.
 	- *순서를 나타내는 추가적인 키를 추가하여 sorting후에 original value를 순서대로 추출하는 패턴*
+
+## 정규표현식
+
+### 긍정형 전방탐색
+- `(?=정규식)`를 사용해서 정규표현식을 매칭한후 정규식과 매칭된 해당 문자열을 소비하지 않고 다시 그 부분부터 매칭한다
+### 부정형 전방탐색
+- `(?=정규식))`를 사용해서 정규식과 매칭하지 않아야 매칭되고 해당 문자열을 소비하지 않는다.
