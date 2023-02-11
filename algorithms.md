@@ -43,7 +43,7 @@ q.appendleft(5)
 ### 긍정형 전방탐색
 - `(?=정규식)`를 사용해서 정규표현식을 매칭한후 정규식과 매칭된 해당 문자열을 소비하지 않고 다시 그 부분부터 매칭한다
 ### 부정형 전방탐색
-- `(?=정규식))`를 사용해서 정규식과 매칭하지 않아야 매칭되고 해당 문자열을 소비하지 않는다.
+- `(?!정규식)`를 사용해서 정규식과 매칭하지 않아야 매칭되고 해당 문자열을 소비하지 않는다.
 ### 정규표현식을 통한 문자열 치환
 ```python
 p = re.compile('[.]{2,}') # .이 2번 이상 연속된 문자열 매칭
@@ -57,11 +57,20 @@ s = p.sub('.', 'aa..bb...c')
 - `search`: 문자열 아무곳에서 매칭하는지
 - `findall`: 매칭하는 모든것을 리스트로 리턴
 - `split`: 해당 regex구분자를 통해 split한 문자열들을 리스트로 리턴
+- `sub(패턴(regex), 대체할 문자열(repl), 대상 문자열(string))`: 문자열 치환
 
 # 언어별 주의사항
 ## Python
 - `map`은 lazy evaluation을 사용하므로 `list(map(람다, ...))` 과 같이 바로 리스트화 하지 않으면 안의 람다함수가 실행되지 않는다.
 - 파이썬의 음수의 몫은 내림을 사용하고, 자바는 버림을 사용한다. 따라서 자바에서 왼쪽방향의 순환이동을 계산할때는 (나머지 결과 + 주기(원형큐사이즈))%주기(원형큐사이즈)로 계산한다.
+### Python 비교 함수 사용
+[파이썬 비교 함수](https://docs.python.org/ko/3/howto/sorting.html#comparison-functions) (`cmp_to_key`)는 Java의 Comparable을 implements하고 override하는 compare 메서드와 같은 용도로서 `key=` 형식으로 들어가는 인자에 함수(람다)로서 2개의 인자를 갖는 함수를 넣을 수 있으며 리턴값은 Java와 동일하게 작을땐 음수, 클땐 양수, 같을 땐 0을 리턴한다. **functools안에있는 모듈이므로 반드시 functools에서 import 해야한다.**
+```python
+from functools import cmp_to_key  
+a = [5, 1, 3, 2]  
+a.sort(key=cmp_to_key(lambda x, y: x - y))
+### [1, 2, 3, 5]
+```
 
 # 후위 표기식
 ## 중위 표기법을 후위 표기법으로 변환
