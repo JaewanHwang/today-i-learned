@@ -1,4 +1,4 @@
-# 내장 함수
+z# 내장 함수
 - `lower(str)`: 소문자 변환
 - `upper(str)`: 대문자 변환
 - `year(date)`: 년도 추출
@@ -28,6 +28,8 @@ SELECT ROUND(3456.1234567 ,-2) FROM DUAL
 		- 문자열패턴은 `%` 는 와일드카드로 (어떠한 문자 {0, }개), `_`는 임의의 문자1개
 	- `LOCATE`: LOCATE(substr, str)
 	- `INSTR`: INSTR(str, substr);
+- `time(datetime)`: 시간 추출, 대소비교 가능
+- 
 
 
 # 기본 문법
@@ -40,4 +42,37 @@ CASE
 	THEN '반환 값'
 	ELSE 'WHEN 조건에 해당 안되는 경우 반환 값'
 END (AS alias명)
+```
+
+- `if`문
+```sql
+if(조건문, 참일때 값, 거짓일때 값)
+```
+- `ifnull`문
+```sql
+ifnull(null일 수도 있는 필드값, null일때 대체할 값)
+```
+- `with recursive, set` 구문
+	- select 구문에서 사용하는 `:=` 연산자는 sql문 안에서는 `=` 이 동등비교연산자로 사용되기때문에 `set`을 통해 변수를 선언하고 sql구문안에서는 `:=` 연산자를 사용
+
+```sql
+# -- 사용자 정의 변수 사용
+# SET @HOUR = -1;
+
+# SELECT (@HOUR := @HOUR +1) AS `HOUR`, (SELECT COUNT(*) FROM ANIMAL_OUTS WHERE @HOUR = HOUR(`DATETIME`))
+# FROM ANIMAL_OUTS
+# WHERE @HOUR < 23
+# ORDER BY `HOUR`;
+
+-- WITH RECURSIVE 사용
+WITH RECURSIVE `TIME` AS (
+    SELECT 0 AS H
+    UNION ALL
+    SELECT H + 1 AS H FROM `TIME` WHERE H < 23
+)
+
+SELECT H AS `HOUR`, COUNT(ANIMAL_ID) AS `COUNT`
+FROM `TIME` LEFT JOIN ANIMAL_OUTS ON H = HOUR(DATETIME) 
+GROUP BY `HOUR`
+ORDER BY `HOUR`;
 ```
