@@ -1,4 +1,4 @@
-z# 내장 함수
+# 내장 함수
 - `lower(str)`: 소문자 변환
 - `upper(str)`: 대문자 변환
 - `year(date)`: 년도 추출
@@ -75,4 +75,17 @@ SELECT H AS `HOUR`, COUNT(ANIMAL_ID) AS `COUNT`
 FROM `TIME` LEFT JOIN ANIMAL_OUTS ON H = HOUR(DATETIME) 
 GROUP BY `HOUR`
 ORDER BY `HOUR`;
+```
+
+- `group by` 와 `order by` 절을 함께 사용할 때 `order by` 절에 집계함수를 사용할 수 있다. ([프로그래머스 SQL 고득점 kit 문제 참고](https://school.programmers.co.kr/learn/courses/30/lessons/131124))
+```sql
+select MEMBER_NAME, REVIEW_TEXT, date_format(REVIEW_DATE, '%Y-%m-%d') as REVIEW_DATE
+from MEMBER_PROFILE natural join REST_REVIEW
+where MEMBER_PROFILE.MEMBER_ID = ( 
+    select MEMBER_ID
+    from REST_REVIEW
+    group by MEMBER_ID
+    order by count(*) desc
+    LIMIT 1)
+order by REVIEW_DATE, REVIEW_TEXT;
 ```
