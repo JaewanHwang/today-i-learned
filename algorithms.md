@@ -1,45 +1,10 @@
-
-## 문자열 패딩
-### `rjust`
-- 오른쪽 정렬
-- 전체 문자열 길이와 공백을 채울 문자 지정
-```python
-# 00077
-val = '77'.rust(5, "0")
-```
-### `ljust`
-- 왼쪽으로 정렬
-- 전체 문자열 길이와 공백을 채울 문자 지정/
-```python
-# 00222
-val = '222'.ljust(5, "0") 
-```
-### `zfill`
-- 주어진 길이가 되도록 0을 왼쪽에 채워줌
-```python
-# 022
-val = '22'.zfill(3)
-```
-### `deque(maxlen=)`
-- maxlen 파라미터는 덱의 최대크기를 지정하며 최대 크기에서 새로운 원소를 append 할 시 가장 오래된 항목(head에 가까운 노드)부터 제거한다
-```python
-q = deque(maxlen=3)
-q.append(1)
-q.append(2)
-q.append(3)
-q.append(4)
-# deque([2, 3, 4])
-q.appendleft(5)
-# deque([5, 2, 3])
-```
 ## 정렬
 - Python, C++은 기본 정렬 메소드가 모두 stable sort를 지원한다.
 - merge sort, bubble sort, insertion sort가 모두 stable sort이다.
 - stable sort를 만들기 위해서 *decorate-sort-undecorate*패턴을 사용하기도 한다.
 	- *순서를 나타내는 추가적인 키를 추가하여 sorting후에 original value를 순서대로 추출하는 패턴*
 
-## 정규표현식
-
+# 정규표현식
 ### 긍정형 전방탐색
 - `(?=정규식)`를 사용해서 정규표현식을 매칭한후 정규식과 매칭된 해당 문자열을 소비하지 않고 다시 그 부분부터 매칭한다
 ### 부정형 전방탐색
@@ -59,7 +24,7 @@ s = p.sub('.', 'aa..bb...c')
 - `split`: 해당 regex구분자를 통해 split한 문자열들을 리스트로 리턴
 - `sub(패턴(regex), 대체할 문자열(repl), 대상 문자열(string))`: 문자열 치환
 
-# 언어별 주의사항
+# 언어별 내장 함수, 클래스 정리 노트
 ## Python
 - `map`은 lazy evaluation을 사용하므로 `list(map(람다, ...))` 과 같이 바로 리스트화 하지 않으면 안의 람다함수가 실행되지 않는다.
 - 파이썬의 음수의 몫은 내림을 사용하고, 자바는 버림을 사용한다. 따라서 자바에서 왼쪽방향의 순환이동을 계산할때는 (나머지 결과 + 주기(원형큐사이즈))%주기(원형큐사이즈)로 계산한다.
@@ -70,6 +35,53 @@ from functools import cmp_to_key
 a = [5, 1, 3, 2]  
 a.sort(key=cmp_to_key(lambda x, y: x - y))
 ### [1, 2, 3, 5]
+```
+### 문자열 패딩
+`rjust`
+- 오른쪽 정렬
+- 전체 문자열 길이와 공백을 채울 문자 지정
+```python
+# 00077
+val = '77'.rust(5, "0")
+```
+ `ljust`
+- 왼쪽으로 정렬
+- 전체 문자열 길이와 공백을 채울 문자 지정/
+```python
+# 00222
+val = '222'.ljust(5, "0") 
+```
+ `zfill`
+- 주어진 길이가 되도록 0을 왼쪽에 채워줌
+```python
+# 022
+val = '22'.zfill(3)
+```
+`deque(maxlen=)`
+- maxlen 파라미터는 덱의 최대크기를 지정하며 최대 크기에서 새로운 원소를 append 할 시 가장 오래된 항목(head에 가까운 노드)부터 제거한다
+```python
+q = deque(maxlen=3)
+q.append(1)
+q.append(2)
+q.append(3)
+q.append(4)
+# deque([2, 3, 4])
+q.appendleft(5)
+# deque([5, 2, 3])
+```
+
+# DFS
+- BFS 사용한 모든 상태노드 탐색을 => DFS를 이용한 완전탐색으로 치환할 수 있다.
+- DFS를 사용하여 고차원(다양한 제한 조건이 추가된)의 완전탐색을 하기 위해서는 다음과 같은 방법을 사용한다.
+> 다음으로 방문할 수 있는 노드들의 집합은 반드시 deepcopy해주고 사용해야한다.
+```python
+def go(현재 노드를 가리키는 번호나 위치, 현재까지의 상태(visited배열), 현재 단계에서 나아갈 수 있는 다음 노드의 집합):
+	다음 노드의 집합 deepcopy
+	종료 조건 검사
+	다음으로 방문할 수 있는 노드를 하나씩 방문
+	 -> 이때 현재 단계에서 나아갈 수 있는 다음 노드의 집합에서 
+	    선택한 노드를 제거하고 go()함수를 재귀호출한다.
+	
 ```
 
 # 후위 표기식
