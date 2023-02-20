@@ -1,4 +1,4 @@
-## 정렬
+# 정렬
 - Python, C++은 기본 정렬 메소드가 모두 stable sort를 지원한다.
 - merge sort, bubble sort, insertion sort가 모두 stable sort이다.
 - stable sort를 만들기 위해서 *decorate-sort-undecorate*패턴을 사용하기도 한다.
