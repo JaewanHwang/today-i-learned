@@ -117,7 +117,7 @@ max_index = max(range(배열 길이), key=lambda x: a[x])
 
 ![](images/Pasted%20image%2020230224181652.png) 
 
-위의 배열을 왼쪽에서 오른쪽으로 위에서 아래로 누적합을 해주.  다음과 같이 된다.  
+위의 배열을 왼쪽에서 오른쪽으로 위에서 아래로 누적합을 해주면 다음과 같이 된다.  
 
 ![](images/Pasted%20image%2020230224181402.png) 
 
