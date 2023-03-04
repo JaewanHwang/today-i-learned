@@ -127,3 +127,21 @@ max_index = max(range(배열 길이), key=lambda x: a[x])
 ![](images/Pasted%20image%2020230224181402.png) 
 
 >2차원 배열에서 (x1,y1)부터 (x2,y2)까지 n만큼의  변화는 (x1,y1)에 +n, (x. ,y2+1)에 -n, (x2+1,y1)에 -n, (x2+1,y2+1)에 +n을 한 것과 같습니다.
+
+# 그래프
+## 다익스트라
+> 다익스트라를 조금 변형하면 시작점에서 다른 모든 정점까지 최단경로가 아닌 시작점에서 i지점까지 올 때 간선 가중치들의 최대값을  최소로하는 가중치를 구할 수 있다. [적용되는 문제 해설](https://tech.kakao.com/2022/07/13/2022-coding-test-summer-internship/#elementor-toc__heading-anchor-3)  
+> 
+> 다익스트라를 적용할 수 있는 이유는 경로가 지날 수록 단조 증가(같거나 커짐)하는 성질을 만족하기 때문이다.
+
+```text
+if dist[to] > dist[from] + weight then
+
+dist[to] = dist[from] + weight
+
+=> 다음과 같이 변형한다.
+
+if intensity[to] > max(intensity[from], weight) then
+
+intensity[to] = max(intensity[from], weight)
+```
