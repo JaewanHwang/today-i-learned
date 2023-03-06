@@ -30,9 +30,9 @@ SELECT ROUND(3456.1234567 ,-2) FROM DUAL
 	- `INSTR`: INSTR(str, substr);
 - `time(datetime)`: 시간 추출, 대소비교 가능
 - `cast(형변환할 expr as 자료형(SIGNED))` : 정수형변환시 SIGNED를 사용하고 `truncate(실수, 0)`과 같이 소수부를 버릴때 사용됨
-- `datediff(expr1, expr2)`: expr1, expr2에는 날짜 포맷을 `YYYY-MM-DD` 또는 `YYYY-MM-DD HH:MM:SS`형태로 지정, 두 표현식 사이의 일수를 계산
+- `datediff(expr1, expr2)`: expr1, expr2에는 날짜 포맷을 `YYYY-MM-DD` 또는 `YYYY-MM-DD HH:MM:SS`형태로 지정, 두 표현식 사이의 일수를 계산 **주의: expr1 - expr2로 계산하므로 늦은 날짜를 expr1에 넣어야함**
 - `timediff(expr1, expr2)`: 두 표현식 간의 시간을 계산함
-- `timestampdiff(unit, datetime_expr1, datetime_expr2)`: `unit`은 `MONTH, YEAR, DAY, WEEK, HOUR, MINUTE`등 다양한 단위값으로 차이를 계산함
+- `timestampdiff(unit, datetime_expr1, datetime_expr2)`: `unit`은  `MONTH, YEAR, DAY, WEEK, HOUR, MINUTE` 등 다양한 단위값으로 차이를 계산함
 - `div` : _x_ DIV _y_ 방식으로 쓰는 함수로 정수간의 나눗셈을 통해 정수만을 취할때 사용한다.
 ```sql
 SELECT 10 DIV 5;
