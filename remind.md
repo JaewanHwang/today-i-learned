@@ -27,3 +27,22 @@ def go(num, room_dict):
 	 ![](images/Pasted%20image%2020230224175744.png)
 - 모든 skill에 대해 누적합 배열을 처리하면 왼쪽에서 오른쪽으로 누적합을 해주고 위에서 아래쪽으로 누적합을 해주면 누적합 배열을 완성할 수 있음
 - 최종적으로 누적합 배열 + board 배열을 해주면 모든 skill이 끝난뒤 board 배열을 얻을 수 있게 됨
+# [코딩 테스트 공부](https://school.programmers.co.kr/learn/courses/30/lessons/118668)
+\#unbounded knapsack \#dp \#dynamic programming \#동적 계획법
+- 처음에 문제를 풀때는 0-1냅색을 변형하여 풀었지만 실패가 계속 떴음
+- 목표로 하는 목표 알고력과 목표 코딩력을 넘어가는 경우까지 고려하면 배열의 크기 및 업데이트 횟수가 상당히 많아 지므로 시간 초과가 나게됨
+- 이를 해결하기 위해 목표 알고력, 코딩력을 넘어가면 목표 알고력과 목표 코딩력으로 세팅해주면 된다.
+- 또한 최대 alp_req나 최대 cop_req가 오히려 초기 알고력과 코딩력보다 작을 수 있으므로 둘 중 큰 값으로 최대 목표치들을 세팅해줘야한다.
+- 보통의 0-1 Knapsack 알고리즘은 하나의 아이템마다 무게별로 dp배열을 업데이트한다.
+- 이는 딱 하나만 사용하면 되기 때문에 사용하는 loop 순서로 만약 bounded knapsack이나 unbounded knapsack의 경우 아래과 같이 0-1 knapsack처럼 loop를 돌게 되면 최적값을 찾는다고 보장할 수 없다.
+```text
+for item in items:
+	for w in W:
+		d[w] = max(d[w], d[w - item's w] + items's benefit
+```
+- 따라서 만약 dp문제인데 냅색의 느낌이 난다면 0-1 Knapsack이 아니라면 다음과 같이 일반적이 bottom-up 방식의 dp처럼 풀면 최적값을 보장할 수 있다.
+```text
+for w in W:
+	for item in items:
+		d[w + item's weight] = max(d[w + item's weight], d[w] + items's benefit)
+```

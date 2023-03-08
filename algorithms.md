@@ -50,7 +50,7 @@ p = re.compile('[a-z]', re.I)
 - `|`: or과 동일한 의미
 - `^`: 문자열의 맨 처음과 일치
 - `$`: 문자열의 끝과 매치
-- `\b`: raw string과 같이 써야함, whitespace로 구분자
+- `\b`: raw string과 같이 써야함, whitespace로 구분자, 매칭된 문자열에는 포함을 하지는 않음
 - `\B`: whitespace로 구분된 단어가 아닌 경우만 매치
 
 # 언어별 내장 함수, 클래스 정리 노트
