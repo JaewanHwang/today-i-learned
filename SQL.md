@@ -39,7 +39,11 @@ SELECT 10 DIV 5;
 # 2
 ```
 
-
+- `mid` = `substr` = `substring`  `SUBSTR(string, start, length)` 으로 사용하며 `string`의 `start`부터 `length`만큼 문자열을 잘라 리턴한다. 이때 `start`는 0이아닌 1부터 센다
+```sql
+SELECT SUBSTR(CustomerName, 2, 5) AS ExtractString
+FROM Customers;
+```
 # 기본 문법
 - `case` 사용법
 ```sql
@@ -97,3 +101,6 @@ where MEMBER_PROFILE.MEMBER_ID = (
     LIMIT 1)
 order by REVIEW_DATE, REVIEW_TEXT;
 ```
+# 집계함수(Aggregate Function)
+- `COUNT`, `AVG`, `SUM`은 NULL이 아닌 행에 대해서 작업을 수행한다.
+- 집계함수는 select문, having문에서만 사용가능하며 where에서는 집계함수를 사용할 수 없다.
