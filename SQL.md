@@ -39,7 +39,8 @@ SELECT 10 DIV 5;
 # 2
 ```
 
-- `mid` = `substr` = `substring`  `SUBSTR(string, start, length)` 으로 사용하며 `string`의 `start`부터 `length`만큼 문자열을 잘라 리턴한다. 이때 `start`는 0이아닌 1부터 센다
+- `mid` = `substr` = `substring`:
+	`SUBSTR(string, start, length)` 으로 사용하며 `string`의 `start`부터 `length`만큼 문자열을 잘라 리턴한다. 이때 `start`는 0이아닌 1부터 센다
 ```sql
 SELECT SUBSTR(CustomerName, 2, 5) AS ExtractString
 FROM Customers;

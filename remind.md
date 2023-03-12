@@ -46,3 +46,9 @@ for w in W:
 	for item in items:
 		d[w + item's weight] = max(d[w + item's weight], d[w] + items's benefit)
 ```
+# [사라지는 발판](https://school.programmers.co.kr/learn/courses/30/lessons/92345)
+\#게임 이론, \#턴 게임
+[카카오 해설](https://tech.kakao.com/2022/01/14/2022-kakao-recruitment-round-1/#%EB%AC%B8%EC%A0%9C-7-%EC%82%AC%EB%9D%BC%EC%A7%80%EB%8A%94-%EB%B0%9C%ED%8C%90)
+- 완전탐색으로 A함수, B함수를 각각 만들어 리턴값은 승패여부와 이동 횟수를 넘긴다.
+- 각각의 함수에서 상대방 함수를 호출하므로 상대방 함수의 결과에 따라 나의 결과가 정해진다.
+- 이때 게임 이론에 따라 실수 없이 최적의 플레이한 결과를 얻기 위해선 상대방이 모두 이기는 경우에만 내가 지는 걸로 하고 상대방이 한번이라도 질 수 있는 경우면 내가 이기는 걸로 리턴해야 최적의 플레이와 동시에 질 수 밖에 없는 상황을 만들 수 있다.
